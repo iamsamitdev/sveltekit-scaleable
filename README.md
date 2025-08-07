@@ -1,22 +1,75 @@
-# sv
+# SvelteKit Scaleable App
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+แอปพลิเคชัน SvelteKit ที่ออกแบบมาเพื่อรองรับการขยายตัว พร้อมระบบ Authentication และ Admin Panel
 
-## Creating a project
+## คุณสมบัติ
 
-If you're seeing this, you've probably already done this step. Congrats!
+- 🔐 **Authentication System** - ระบบเข้าสู่ระบบที่ปลอดภัยด้วย JWT
+- 👥 **Role-based Access Control** - ควบคุมการเข้าถึงตาม Role (Admin/User)
+- 🛡️ **Protected Routes** - เส้นทางที่มีการป้องกัน
+- 📊 **Admin Panel** - หน้าจัดการสำหรับผู้ดูแลระบบ
+- 🎨 **Modern UI** - ใช้ Tailwind CSS
+- 📱 **Responsive Design** - รองรับทุกขนาดหน้าจอ
+- 🔄 **API Integration** - ระบบเชื่อมต่อ API ที่ยืดหยุ่น
 
-```sh
-# create a new project in the current directory
-npx sv create
+## โครงสร้างโปรเจ็กต์
 
-# create a new project in my-app
-npx sv create my-app
+```
+src/
+├── lib/                      # Shared Layer
+│   ├── components/           # Component ใช้ซ้ำ
+│   ├── layouts/             # Layout หลัก
+│   ├── services/            # ฟังก์ชันเรียก API
+│   ├── stores/              # Global store
+│   ├── utils/               # Helper functions
+│   └── types/               # TypeScript interfaces
+│
+├── features/                # ฟีเจอร์ตามโมดูล
+│   ├── auth/                # Authentication
+│   │   ├── components/      # LoginForm, RegisterForm
+│   │   ├── services/        # authService
+│   │   └── stores/          # authStore
+│   │
+│   └── admin/               # Admin features
+│       ├── services/        # adminService
+│       └── stores/          # adminStore
+│
+├── routes/                  # Routing หลัก
+│   ├── (public)/           # Routes สาธารณะ
+│   ├── (admin)/            # Routes สำหรับ Admin
+│   └── (auth)/             # Routes สำหรับ Auth
+│
+└── hooks.server.ts         # Server hooks
 ```
 
-## Developing
+## การติดตั้ง
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Clone โปรเจ็กต์
+```bash
+git clone [repository-url]
+cd sveltekit-scaleable
+```
+
+2. ติดตั้ง dependencies
+```bash
+npm install
+# หรือ
+bun install
+```
+
+3. คัดลอก environment variables
+```bash
+cp .env.example .env
+```
+
+4. แก้ไขไฟล์ `.env` ตามการตั้งค่าของคุณ
+
+5. เริ่มการพัฒนา
+```bash
+npm run dev
+# หรือ
+bun dev
+```
 
 ```sh
 npm run dev
